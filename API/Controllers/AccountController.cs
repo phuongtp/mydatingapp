@@ -49,9 +49,10 @@ namespace API.Controllers
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
-      var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
+      var user = await _context.Users
+        .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
-      if (user == null) return Unauthorized("Ïnvalid username");
+      if (user == null) return Unauthorized("Invalid username");
 
       using var hmac = new HMACSHA512(user.PasswordSalt);
 
