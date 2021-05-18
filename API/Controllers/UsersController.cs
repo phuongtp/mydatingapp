@@ -16,10 +16,8 @@ namespace API.Controllers
   public class UsersController : BaseApiController
   {
     private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
-    public UsersController(IUserRepository userRepository, IMapper mapper)
+    public UsersController(IUserRepository userRepository)
     {
-      _mapper = mapper;
       _userRepository = userRepository;
     }
 
@@ -28,9 +26,7 @@ namespace API.Controllers
     {
       // We have to watch until this Get action have to finished
       var users = await _userRepository.GetMembersAsync();
-
       // var usersToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
-
       return Ok(users);
     }
 
@@ -39,9 +35,7 @@ namespace API.Controllers
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
       var user = await _userRepository.GetMemberByUsernameAsync(username);
-
       // var userToReturn = _mapper.Map<MemberDto>(user);
-
       return Ok(user);
     }
   }
