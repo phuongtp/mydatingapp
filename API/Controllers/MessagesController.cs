@@ -58,7 +58,7 @@ namespace API.Controllers
 
         var messages = await _unitOfWork.MessageRepository.GetMessagesForUser(messageParams);
 
-        if (!await _unitOfWork.Complete()) return BadRequest("Failed to saved the Date Read data.");
+        // if (!await _unitOfWork.Complete()) return BadRequest("Failed to saved the Date Read data.");
 
         Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize, 
                     messages.TotalCount, messages.TotalPages);
