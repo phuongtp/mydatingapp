@@ -19,7 +19,6 @@ export class MemberMessagesComponent implements OnInit {
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
-    // this.loadMessages();
   }
 
   sendMessage() {
@@ -28,10 +27,4 @@ export class MemberMessagesComponent implements OnInit {
       this.messageForm.reset();
     }).finally(() => this.loading = false);
   }
-  // loadMessages() {
-  //   this.messageService.getMessageThread(this.username).subscribe(messages => {
-  //     this.messages = messages;
-  //   })
-  // }
-
 }
